@@ -1,0 +1,19 @@
+{
+  "name": "lauchbot-binance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv-safe": "^8.2.0",
+    "node-binance-api": "^0.13.1",
+    "node-schedule": "^2.1.0",
+    "ws": "^8.4.0"
+  }
+}
