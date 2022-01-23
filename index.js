@@ -16,7 +16,6 @@ const profit = 2;
 const buyQty = 100;
 //Data do agendamento
 const date = new Date(2022, 0, 20, 09, 00, 0)
-
 //Percentual do pico para venda
 const percent = 92
 //Offset de tempo para início da venda (s)
@@ -25,7 +24,7 @@ let timer = 15;
 //não mexa nestas variáveis
 let quantity = 0;
 let buyPrice = 0;
-let isBought = false;
+let comprado = false;
 let wallet = {};
 let saldoAsset = {};
 let saldoBase = {};
@@ -67,7 +66,7 @@ setInterval(async () => {
 
 setInterval(() => {
 
-    if (pAsk > 0 && pAsk !== '' && !isBought){
+    if (pAsk > 0 && pAsk !== '' && !comprado){
 
         isBought = true;
 
@@ -96,6 +95,7 @@ async function compra () {
     pOrder = order
 
     if (order.status === 'FILLED'){
+        console.log('Ordem preechida...');
         quantity = parseFloat(order.executedQty);
         buyPrice = parseFloat(order.fills[0].price);
         console.log('Finalizada compra...');
@@ -116,7 +116,7 @@ async function compra () {
 
 const job = nodeSchedule.scheduleJob(date, () => {
     
-    isBought = true;
+    comprado = true;
 
     compra()
 
@@ -148,7 +148,7 @@ ws.onmessage = async (event) => {
             pMaxPrice = maxPrice
             pLastPrice = lastPrice
 
-            if (!isBought) {
+            if (!comprado) {
                 
                 return;
             }
